@@ -19,7 +19,30 @@ library
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-executable task-ventillator-exe
+executable task-worker-exe
+  hs-source-dirs:      app
+  main-is:             TaskWorkerKill.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , workbench
+                     , zeromq4-haskell
+                     , random
+                     , bytestring
+  default-language:    Haskell2010
+
+executable task-sink-exe
+  hs-source-dirs:      app
+  main-is:             TaskSinkKill.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , workbench
+                     , zeromq4-haskell
+                     , random
+                     , bytestring
+                     , time
+  default-language:    Haskell2010
+
+executable task-ventillator
   hs-source-dirs:      app
   main-is:             TaskVentillator.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
@@ -28,29 +51,6 @@ executable task-ventillator-exe
                      , zeromq4-haskell
                      , random
                      , bytestring
-  default-language:    Haskell2010
-
-executable weather-server-exe
-  hs-source-dirs:      app
-  main-is:             WeatherServer.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base
-                     , workbench
-                     , zeromq4-haskell
-                     , random
-                     , bytestring
-  default-language:    Haskell2010
-
-executable multi-socket-poller-exe
-  hs-source-dirs:      app
-  main-is:             MultiSocketPoller.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base
-                     , workbench
-                     , zeromq4-haskell
-                     , random
-                     , bytestring
-                     , time                     
   default-language:    Haskell2010  
 
 test-suite workbench-test

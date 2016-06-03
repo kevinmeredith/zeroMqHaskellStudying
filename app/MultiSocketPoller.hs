@@ -24,8 +24,8 @@ main = runZMQ $ do
   where
     -- Process task
     receiver_callback :: [Event] -> ZMQ z ()
-    receiver_callback _ = return $ putStrLn "handled task" >> return ()
+    receiver_callback _ = liftIO $ putStrLn ("process task ventillator") >> return ()
 
     -- Process weather update
     subscriber_callback :: [Event] -> ZMQ z ()
-    subscriber_callback _ = return $ putStrLn "handled weather" >> return ()
+    subscriber_callback _ = liftIO $ putStrLn ("process weather task") >>return ()
