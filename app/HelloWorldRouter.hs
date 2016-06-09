@@ -20,5 +20,5 @@ main = runZMQ $ do
         buffer <- receive responder
         liftIO $ do 
         	printf "received request: %s\n" . unpack $ buffer
-        	threadDelay 1000000 -- Do some 'work'
+        	-- threadDelay 1000000 -- Do some 'work'
         send responder [] "World"
