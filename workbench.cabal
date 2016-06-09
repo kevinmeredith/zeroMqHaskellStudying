@@ -19,20 +19,9 @@ library
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-executable task-worker-exe
+executable server-exe
   hs-source-dirs:      app
-  main-is:             TaskWorkerKill.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base
-                     , workbench
-                     , zeromq4-haskell
-                     , random
-                     , bytestring
-  default-language:    Haskell2010
-
-executable task-sink-exe
-  hs-source-dirs:      app
-  main-is:             TaskSinkKill.hs
+  main-is:             HelloWorldRouter.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , workbench
@@ -42,9 +31,9 @@ executable task-sink-exe
                      , time
   default-language:    Haskell2010
 
-executable task-ventillator
+executable client-exe
   hs-source-dirs:      app
-  main-is:             TaskVentillator.hs
+  main-is:             HelloWorldClient.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , workbench

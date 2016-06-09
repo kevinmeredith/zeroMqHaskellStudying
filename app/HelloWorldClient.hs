@@ -17,6 +17,6 @@ main = runZMQ $ do
     forM_ [1..10] $ \i -> do
         liftIO . putStrLn $ "Sending Hello " ++ show i ++ "…"
         send requester [] "Hello"
-        _ <- receive requester
+        message <- receive requester
         liftIO . putStrLn $ "Received World " ++ show i
 
