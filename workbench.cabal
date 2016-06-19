@@ -19,9 +19,9 @@ library
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
-executable publisher-exe
+executable client-exe
   hs-source-dirs:      app
-  main-is:             PubSubEnvelopePublisher.hs
+  main-is:             HelloWorldClient.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , workbench
@@ -31,15 +31,16 @@ executable publisher-exe
                      , time
   default-language:    Haskell2010
 
-executable subscriber-exe
+executable router-exe
   hs-source-dirs:      app
-  main-is:             PubSubEnvelopeSubscriber.hs
+  main-is:             HelloWorldRouter.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , workbench
                      , zeromq4-haskell
                      , random
                      , bytestring
+                     , semigroups
   default-language:    Haskell2010  
 
 test-suite workbench-test

@@ -8,7 +8,8 @@ import Control.Concurrent
 import Control.Monad
 import System.ZMQ4.Monadic
 import Text.Printf
-import Data.ByteString.Char8 (unpack)
+import Data.ByteString.Char8 (unpack, pack)
+import Data.List.NonEmpty
 
 main :: IO ()
 main = runZMQ $ do
@@ -17,8 +18,8 @@ main = runZMQ $ do
     bind responder "tcp://*:5555"
 
     forever $ do
-        buffer <- receive responder
-        liftIO $ do 
-        	printf "received request: %s\n" . unpack $ buffer
-        	-- threadDelay 1000000 -- Do some 'work'
-        send responder [] "World"
+        response @ (identity : _ : body : []) <- receiveMulti responder
+        _ <- liftIO $ putStrLn . show . Prelude.length $ response
+        _ <- liftIO $ forM_ response (printf "received request: %s\n" . unpack)
+        liftIO $ putStrLn "sending world"
+        sendMulti responder $ identity `cons` (pack "" `cons` (pack "world" :| []))
